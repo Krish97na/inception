@@ -193,30 +193,30 @@ public class RecommendationServiceImplIntegrationTest
 
     private Project createProject(String aName)
     {
-        Project project = new Project();
-        project.setName(aName);
-        project.setMode(WebAnnoConst.PROJECT_TYPE_ANNOTATION);
-        return testEntityManager.persist(project);
+        Project updatedproject = new Project();
+        updatedproject.setName(aName);
+        updatedproject.setMode(WebAnnoConst.PROJECT_TYPE_ANNOTATION);
+        return testEntityManager.persist(updatedproject);
     }
 
     private AnnotationLayer createAnnotationLayer()
     {
-        AnnotationLayer layer = new AnnotationLayer();
-        layer.setEnabled(true);
-        layer.setName(NamedEntity.class.getName());
-        layer.setReadonly(false);
-        layer.setType(NamedEntity.class.getName());
-        layer.setUiName("test ui name");
-        layer.setAnchoringMode(false, false);
+        AnnotationLayer newlayer = new AnnotationLayer();
+        newlayer.setEnabled(true);
+        newlayer.setName(NamedEntity.class.getName());
+        newlayer.setReadonly(false);
+        newlayer.setType(NamedEntity.class.getName());
+        newlayer.setUiName("test ui name");
+        newlayer.setAnchoringMode(false, false);
        
-        return testEntityManager.persist(layer);
+        return testEntityManager.persist(newlayer);
     }
 
     private User createUser()
     {
-        User user = new User();
+        User newuser = new User();
 
-        return user;
+        return newuser;
     }
 
     private Recommender buildRecommender(Project aProject, AnnotationFeature aFeature)
@@ -234,12 +234,12 @@ public class RecommendationServiceImplIntegrationTest
 
     private AnnotationFeature createAnnotationFeature(AnnotationLayer aLayer, String aName)
     {
-        AnnotationFeature feature = new AnnotationFeature();
-        feature.setLayer(aLayer);
-        feature.setName(aName);
-        feature.setUiName(aName);
-        feature.setType(CAS.TYPE_NAME_STRING);
+        AnnotationFeature selectfeature = new AnnotationFeature();
+        selectfeature.setLayer(aLayer);
+        selectfeature.setName(aName);
+        selectfeature.setUiName(aName);
+        selectfeature.setType(CAS.TYPE_NAME_STRING);
                
-        return testEntityManager.persist(feature);
+        return testEntityManager.persist(selectfeature);
     }
 }

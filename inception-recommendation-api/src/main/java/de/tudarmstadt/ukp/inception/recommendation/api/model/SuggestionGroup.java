@@ -361,7 +361,7 @@ public class SuggestionGroup
     {
         private static final long serialVersionUID = -4892325166786170047L;
         
-        private final double delta;
+        private final double deltaforce;
         private final AnnotationSuggestion first;
         private final AnnotationSuggestion second;
 
@@ -378,10 +378,10 @@ public class SuggestionGroup
             second = aSecond;
 
             if (second == null) {
-                delta = Math.abs(aFirst.getConfidence());
+                deltaforce = Math.abs(aFirst.getConfidence());
             }
             else {
-                delta = Math.abs(first.getConfidence() - second.getConfidence());
+                deltaforce = Math.abs(first.getConfidence() - second.getConfidence());
             }
         }
 
@@ -397,7 +397,7 @@ public class SuggestionGroup
 
         public double getDelta()
         {
-            return delta;
+            return deltaforce;
         }
     }
     

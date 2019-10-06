@@ -34,23 +34,23 @@ public class ConfusionMatrix implements Serializable
     /**
      * Stores number of predicted labels for each gold label
      */
-    private Object2IntOpenHashMap<ConfMatrixKey> confusionMatrix;
+    private Object2IntOpenHashMap<ConfMatrixKey> privconfusionMatrix;
     private Set<String> labels;
     private int total;
 
     public ConfusionMatrix()
     {
-        confusionMatrix = new Object2IntOpenHashMap<>();
+        privconfusionMatrix = new Object2IntOpenHashMap<>();
         labels = new LinkedHashSet<>();
     }
     
     
     public int getEntryCount(String aPredictedLabel, String aGoldLabel) {
-        return confusionMatrix.getInt(new ConfMatrixKey(aGoldLabel, aPredictedLabel));
+        return privconfusionMatrix.getInt(new ConfMatrixKey(aGoldLabel, aPredictedLabel));
     }
     
     public boolean containsEntry(String aPredictedLabel, String aGoldLabel) {
-        return confusionMatrix.containsKey(new ConfMatrixKey(aGoldLabel, aPredictedLabel));
+        return privconfusionMatrix.containsKey(new ConfMatrixKey(aGoldLabel, aPredictedLabel));
     }
     
     /**
@@ -66,12 +66,12 @@ public class ConfusionMatrix implements Serializable
 
         // annotated pair is true positive
         if (aGoldLabel.equals(aPredictedLabel)) {
-            confusionMatrix.addTo(new ConfMatrixKey(aGoldLabel, aGoldLabel), 1);
+            privconfusionMatrix.addTo(new ConfMatrixKey(aGoldLabel, aGoldLabel), 1);
         }
         else {
             // annotated pair is false negative for gold class = annotated pair is false
             // positive for predicted class
-            confusionMatrix.addTo(new ConfMatrixKey(aGoldLabel, aPredictedLabel), 1);
+            privconfusionMatrix.addTo(new ConfMatrixKey(aGoldLabel, aPredictedLabel), 1);
         }
     }
 
@@ -87,12 +87,12 @@ public class ConfusionMatrix implements Serializable
 
     public Object2IntOpenHashMap<ConfMatrixKey> getConfusionMatrix()
     {
-        return confusionMatrix;
+        return privconfusionMatrix;
     }
 
     public void addMatrix(ConfusionMatrix aMatrix) {
         for (Entry<ConfMatrixKey> entry : aMatrix.getConfusionMatrix().object2IntEntrySet()) {
-            confusionMatrix.addTo(entry.getKey(), entry.getIntValue());
+            privconfusionMatrix.addTo(entry.getKey(), entry.getIntValue());
         }
     }
 
@@ -113,7 +113,7 @@ public class ConfusionMatrix implements Serializable
             matrixStr.append("\t| ");
             for (String predictedLabel : labels) {
                 matrixStr.append(
-                        confusionMatrix.getInt(new ConfMatrixKey(goldLabel, predictedLabel)));
+                        privconfusionMatrix.getInt(new ConfMatrixKey(goldLabel, predictedLabel)));
                 matrixStr.append("\t| ");
             }
             matrixStr.append("\n");

@@ -387,9 +387,9 @@ public class SubjectObjectFeatureEditor
         String linkedType = this.getModelObject().feature.getType();
         AnnotationLayer linkedLayer = annotationService
             .findLayer(this.stateModel.getObject().getProject(), linkedType);
-        AnnotationFeature linkedAnnotationFeature = annotationService
+        AnnotationFeature relinkedAnnotationFeature = annotationService
             .getFeature(FactLinkingConstants.LINKED_LAYER_FEATURE, linkedLayer);
-        return linkedAnnotationFeature;
+        return relinkedAnnotationFeature;
     }
 
     private ConceptFeatureTraits readFeatureTraits(AnnotationFeature aAnnotationFeature) {

@@ -156,7 +156,7 @@ public class StringMatchingRecommenderTraitsEditor
     {
         private static final long serialVersionUID = -2049981253344229438L;
         
-        private ListView<Gazeteer> gazeteerList;
+        private ListView<Gazeteer> privgazeteerList;
         
         public GazeteerList(String aId, IModel<? extends List<Gazeteer>> aChoices)
         {
@@ -164,7 +164,7 @@ public class StringMatchingRecommenderTraitsEditor
             
             setOutputMarkupPlaceholderTag(true);
             
-            gazeteerList = new ListView<Gazeteer>("gazeteer", aChoices) {
+            privgazeteerList = new ListView<Gazeteer>("gazeteer", aChoices) {
                 private static final long serialVersionUID = 2827701590781214260L;
 
                 @Override
@@ -182,7 +182,7 @@ public class StringMatchingRecommenderTraitsEditor
                             gazeteer.getName()));
                 }
             };
-            add(gazeteerList);
+            add(privgazeteerList);
         }
         
         private File getGazeteerFile(Gazeteer aGazeteer)

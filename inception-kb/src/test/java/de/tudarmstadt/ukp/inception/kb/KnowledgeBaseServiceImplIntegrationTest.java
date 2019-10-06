@@ -171,9 +171,9 @@ public class KnowledgeBaseServiceImplIntegrationTest  {
 
     @Test
     public void getKnowledgeBases_WithoutKnowledgeBases_ShouldReturnEmptyList() {
-        Project project = createProject("Empty project");
+        Project updatedproject = createProject("Empty project");
 
-        List<KnowledgeBase> knowledgeBases = sut.getKnowledgeBases(project);
+        List<KnowledgeBase> knowledgeBases = sut.getKnowledgeBases(updatedproject);
 
         assertThat(knowledgeBases)
             .as("Check that no knowledge base is found")

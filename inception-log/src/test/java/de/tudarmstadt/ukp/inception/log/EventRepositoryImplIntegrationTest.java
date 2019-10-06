@@ -252,29 +252,29 @@ public class EventRepositoryImplIntegrationTest  {
     // Helper
     private Project createProject(String aName)
     {
-        Project project = new Project();
-        project.setName(aName);
-        project.setMode(WebAnnoConst.PROJECT_TYPE_ANNOTATION);
-        return testEntityManager.persist(project);
+        Project updatedproject = new Project();
+        updatedproject.setName(aName);
+        updatedproject.setMode(WebAnnoConst.PROJECT_TYPE_ANNOTATION);
+        return testEntityManager.persist(updatedproject);
     }
 
     private LoggedEvent buildLoggedEvent(Project aProject, String aUsername,
             String aEventType, Date aDate, long aDocId, String aDetails)
     {
-        LoggedEvent le = new LoggedEvent();
-        le.setUser(aUsername);
-        le.setProject(aProject.getId());
-        le.setDetails(aDetails);
-        le.setCreated(aDate);
-        le.setEvent(aEventType);
-        le.setDocument(aDocId);
-        return le;
+        LoggedEvent logev = new LoggedEvent();
+        logev.setUser(aUsername);
+        logev.setProject(aProject.getId());
+        logev.setDetails(aDetails);
+        logev.setCreated(aDate);
+        logev.setEvent(aEventType);
+        logev.setDocument(aDocId);
+        return logev;
     }
 
     public User createUser(String aUsername)
     {
-        User user = new User();
-        user.setUsername(aUsername);
-        return testEntityManager.persist(user);
+        User newuser = new User();
+        newuser.setUsername(aUsername);
+        return testEntityManager.persist(newuser);
     }
 }

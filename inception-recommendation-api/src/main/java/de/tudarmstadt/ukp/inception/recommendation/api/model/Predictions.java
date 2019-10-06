@@ -49,7 +49,7 @@ public class Predictions
 {
     private static final long serialVersionUID = -1598768729246662885L;
     
-    private Map<ExtendedId, AnnotationSuggestion> predictions = new ConcurrentHashMap<>();
+    private Map<ExtendedId, AnnotationSuggestion> betterpredictions = new ConcurrentHashMap<>();
     
     private final Project project;
     private final User user;
@@ -67,7 +67,7 @@ public class Predictions
         user = aUser;
 
         if (aPredictions != null) {
-            predictions = new ConcurrentHashMap<ExtendedId, AnnotationSuggestion>(aPredictions);
+            betterpredictions = new ConcurrentHashMap<ExtendedId, AnnotationSuggestion>(aPredictions);
         }
     }
     
@@ -119,7 +119,7 @@ public class Predictions
     private List<AnnotationSuggestion> getFlattenedPredictions(String aDocumentName,
         AnnotationLayer aLayer, int aWindowBegin, int aWindowEnd)
     {
-        return predictions.entrySet().stream()
+        return betterpredictions.entrySet().stream()
             .filter(f -> f.getKey().getDocumentName().equals(aDocumentName))
             .filter(f -> f.getKey().getLayerId() == aLayer.getId())
             .filter(f -> aWindowBegin == -1 || (f.getKey().getBegin() >= aWindowBegin))
@@ -135,7 +135,7 @@ public class Predictions
      */
     public Optional<AnnotationSuggestion> getPredictionByVID(SourceDocument aDocument, VID aVID)
     {
-        return predictions.values().stream()
+        return betterpredictions.values().stream()
                 .filter(f -> f.getDocumentName().equals(aDocument.getName()))
                 .filter(f -> f.getId() == aVID.getSubId())
                 .filter(f -> f.getRecommenderId() == aVID.getId())
@@ -148,7 +148,7 @@ public class Predictions
     public Optional<AnnotationSuggestion> getPrediction(SourceDocument aDocument, int aBegin,
             int aEnd, String aLabel)
     {
-        return predictions.values().stream()
+        return betterpredictions.values().stream()
                 .filter(f -> f.getDocumentName().equals(aDocument.getName()))
                 .filter(f -> f.getBegin() == aBegin && f.getEnd() == aEnd)
                 .filter(f -> f.getLabel().equals(aLabel))
@@ -163,7 +163,7 @@ public class Predictions
     public void putPredictions(long aLayerId, List<AnnotationSuggestion> aPredictions)
     {
         aPredictions.forEach(prediction -> {
-            predictions.put(new ExtendedId(user.getUsername(), project.getId(),
+            betterpredictions.put(new ExtendedId(user.getUsername(), project.getId(),
                     prediction.getDocumentName(), aLayerId, prediction.getOffset(),
                     prediction.getRecommenderId(), prediction.getId(), -1), prediction);
 
@@ -176,22 +176,22 @@ public class Predictions
 
     public boolean hasPredictions()
     {
-        return !predictions.isEmpty();
+        return !betterpredictions.isEmpty();
     }
 
     public Map<ExtendedId, AnnotationSuggestion> getPredictions()
     {
-        return predictions;
+        return betterpredictions;
     }
     
     public void clearPredictions()
     {
-        predictions.clear();
+        betterpredictions.clear();
     }
 
     public void removePredictions(Long recommenderId)
     {
-        predictions.entrySet()
+        betterpredictions.entrySet()
             .removeIf((p) -> p.getKey().getRecommenderId() == recommenderId);
     }
 
@@ -210,7 +210,7 @@ public class Predictions
     public List<AnnotationSuggestion> getPredictionsByTokenAndFeature(String aDocumentName,
         AnnotationLayer aLayer, int aBegin, int aEnd, String aFeature)
     {
-        return predictions.entrySet().stream()
+        return betterpredictions.entrySet().stream()
             .filter(f -> f.getKey().getDocumentName().equals(aDocumentName))
             .filter(f -> f.getKey().getLayerId() == aLayer.getId())
             .filter(f -> f.getKey().getOffset().getBeginCharacter() == aBegin)
