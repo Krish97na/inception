@@ -37,7 +37,7 @@ import de.tudarmstadt.ukp.inception.recommendation.api.model.LearningRecordType;
 public class ActiveLearningSuggestionOfferedAdapter
     implements EventLoggingAdapter<ActiveLearningSuggestionOfferedEvent>
 {
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    //private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
     public boolean accepts(Object aEvent)
@@ -78,6 +78,7 @@ public class ActiveLearningSuggestionOfferedAdapter
             return JSONUtil.toJsonString(details);
         }
         catch (IOException e) {
+        	final Logger log = LoggerFactory.getLogger(getClass());
             log.error("Unable to log event [{}]", aEvent, e);
             return "<ERROR>";
         }

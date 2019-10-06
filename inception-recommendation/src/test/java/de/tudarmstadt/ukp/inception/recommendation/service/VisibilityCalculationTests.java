@@ -52,10 +52,10 @@ public class VisibilityCalculationTests
     private @Mock LearningRecordService recordService;
     private @Mock AnnotationSchemaService annoService;
 
-    private Project project;
+    //private Project project;
     private AnnotationLayer layer;
     private String user;
-    private String neName;
+    //private String neName;
     private long layerId;
     
     private RecommendationServiceImpl sut;
@@ -76,14 +76,14 @@ public class VisibilityCalculationTests
         initMocks(this);
 
         user = "Testuser";
-        neName = "de.tudarmstadt.ukp.dkpro.core.api.ner.type.NamedEntity";
+        String neName = "de.tudarmstadt.ukp.dkpro.core.api.ner.type.NamedEntity";
 
         layer = new AnnotationLayer();
         layer.setName(neName);
         layer.setId(new Long(42));
         layerId = layer.getId();
 
-        project = new Project();
+        Project project = new Project();
         project.setName("Test Project");
         project.setMode(WebAnnoConst.PROJECT_TYPE_ANNOTATION);
 

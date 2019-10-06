@@ -68,14 +68,14 @@ public class KnowledgeBaseServiceRemoteTest
 {
     private final String PROJECT_NAME = "Test project";
 
-    private static Map<String, KnowledgeBaseProfile> PROFILES;
+    //private static Map<String, KnowledgeBaseProfile> PROFILES;
     
     private final TestConfiguration sutConfig;
 
     private KnowledgeBaseServiceImpl sut;
 
-    private Project project;
-    private TestFixtures testFixtures;
+    //private Project project;
+    //private TestFixtures testFixtures;
 
     @Rule
     public TestWatcher watcher = new TestWatcher()
@@ -114,9 +114,9 @@ public class KnowledgeBaseServiceRemoteTest
         RepositoryProperties repoProps = new RepositoryProperties();
         repoProps.setPath(temporaryFolder.getRoot());
         EntityManager entityManager = testEntityManager.getEntityManager();
-        testFixtures = new TestFixtures(testEntityManager);
+        TestFixtures testFixtures = new TestFixtures(testEntityManager);
         sut = new KnowledgeBaseServiceImpl(repoProps, entityManager);
-        project = testFixtures.createProject(PROJECT_NAME);
+        Project project = testFixtures.createProject(PROJECT_NAME);
         kb.setProject(project);
         if (kb.getType() == RepositoryType.LOCAL) {
             sut.registerKnowledgeBase(kb, sut.getNativeConfig());
@@ -154,7 +154,7 @@ public class KnowledgeBaseServiceRemoteTest
     @Parameterized.Parameters(name = "KB = {0}")
     public static List<Object[]> data() throws Exception
     {
-        PROFILES = KnowledgeBaseProfile.readKnowledgeBaseProfiles();
+    	Map<String, KnowledgeBaseProfile> PROFILES = KnowledgeBaseProfile.readKnowledgeBaseProfiles();
         int maxResults = 1000;
 
         Set<String> rootConcepts;

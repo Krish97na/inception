@@ -85,7 +85,7 @@ public class PdfAnnotationEditor
 
     private PdfExtractFile pdfExtractFile;
     private DocumentModel documentModel;
-    private int page;
+    //private int page;
     private Offset pageOffset;
     private Map<Integer, Offset> pageOffsetCache;
 
@@ -346,7 +346,7 @@ public class PdfAnnotationEditor
 
     private void getAnnotations(AjaxRequestTarget aTarget, IRequestParameters aParams)
     {
-        page = aParams.getParameterValue("page").toInt();
+        int page = aParams.getParameterValue("page").toInt();
         if (pageOffsetCache.containsKey(page)) {
             pageOffset = pageOffsetCache.get(page);
         } else {

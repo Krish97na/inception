@@ -95,7 +95,7 @@ public class PdfExtractFile implements Serializable
     /**
      * Contains substitutionTable.xml content
      */
-    private Map<String, String> substitutionTable;
+    //private Map<String, String> substitutionTable;
 
     /**
      * Maps a page number to its corresponding begin and end offset
@@ -112,7 +112,7 @@ public class PdfExtractFile implements Serializable
 
     private void initializeLSanitizedContent(Map<String, String> aSubstitutionTable)
     {
-        substitutionTable = aSubstitutionTable;
+    	Map<String, String> substitutionTable = aSubstitutionTable;
         sanitizedContent = stringContent;
         sanitizedToString = new Int2IntOpenHashMap();
         stringToSanitized = new Int2IntOpenHashMap();

@@ -32,7 +32,7 @@ import de.tudarmstadt.ukp.inception.search.event.SearchQueryEvent;
 public class SearchQueryEventAdapter
     implements EventLoggingAdapter<SearchQueryEvent>
 {
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    //private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
     public boolean accepts(Object aEvent)
@@ -64,6 +64,7 @@ public class SearchQueryEventAdapter
             return JSONUtil.toJsonString(details);
         }
         catch (IOException e) {
+        	final Logger log = LoggerFactory.getLogger(getClass());
             log.error("Unable to log event [{}]", aEvent, e);
             return "<ERROR>";
         }

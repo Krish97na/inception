@@ -76,10 +76,10 @@ public class PdfAnnoRendererTest
     private @Mock AnnotationSchemaService schemaService;
 
     private Project project;
-    private AnnotationLayer tokenLayer;
-    private AnnotationFeature tokenPosFeature;
-    private AnnotationLayer posLayer;
-    private AnnotationFeature posFeature;
+    //private AnnotationLayer tokenLayer;
+    //private AnnotationFeature tokenPosFeature;
+    //private AnnotationLayer posLayer;
+    //private AnnotationFeature posFeature;
 
     private PreRenderer preRenderer;
 
@@ -90,11 +90,11 @@ public class PdfAnnoRendererTest
 
         project = new Project();
 
-        tokenLayer = new AnnotationLayer(Token.class.getName(), "Token", SPAN_TYPE, null, true,
+        AnnotationLayer tokenLayer = new AnnotationLayer(Token.class.getName(), "Token", SPAN_TYPE, null, true,
             SINGLE_TOKEN, NO_OVERLAP);
         tokenLayer.setId(1l);
 
-        tokenPosFeature = new AnnotationFeature();
+        AnnotationFeature tokenPosFeature = new AnnotationFeature();
         tokenPosFeature.setId(1l);
         tokenPosFeature.setName("pos");
         tokenPosFeature.setEnabled(true);
@@ -104,13 +104,13 @@ public class PdfAnnoRendererTest
         tokenPosFeature.setProject(project);
         tokenPosFeature.setVisible(true);
 
-        posLayer = new AnnotationLayer(POS.class.getName(), "POS", SPAN_TYPE, project, true,
+        AnnotationLayer posLayer = new AnnotationLayer(POS.class.getName(), "POS", SPAN_TYPE, project, true,
             SINGLE_TOKEN, NO_OVERLAP);
         posLayer.setId(2l);
         posLayer.setAttachType(tokenLayer);
         posLayer.setAttachFeature(tokenPosFeature);
 
-        posFeature = new AnnotationFeature();
+        AnnotationFeature posFeature = new AnnotationFeature();
         posFeature.setId(2l);
         posFeature.setName("PosValue");
         posFeature.setEnabled(true);

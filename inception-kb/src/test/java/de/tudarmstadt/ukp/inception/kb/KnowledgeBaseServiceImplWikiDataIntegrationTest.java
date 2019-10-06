@@ -82,7 +82,7 @@ public class KnowledgeBaseServiceImplWikiDataIntegrationTest  {
     public final SpringMethodRule springMethodRule = new SpringMethodRule();
 
     private KnowledgeBaseServiceImpl sut;
-    private Project project;
+    //private Project project;
     private KnowledgeBase kb;
     private Reification reification;
 
@@ -115,7 +115,7 @@ public class KnowledgeBaseServiceImplWikiDataIntegrationTest  {
         EntityManager entityManager = testEntityManager.getEntityManager();
         testFixtures = new TestFixtures(testEntityManager);
         sut = new KnowledgeBaseServiceImpl(repoProps, entityManager);
-        project = createProject(PROJECT_NAME);
+        Project project = createProject(PROJECT_NAME);
         kb = buildKnowledgeBase(project, KB_NAME);
         String wikidataAccessUrl = PROFILES.get("wikidata").getAccess().getAccessUrl();
         testFixtures.assumeEndpointIsAvailable(wikidataAccessUrl);

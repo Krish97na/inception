@@ -33,7 +33,7 @@ import de.tudarmstadt.ukp.inception.recommendation.event.RecommendationAcceptedE
 public class RecommendationAcceptedEventAdapter
     implements EventLoggingAdapter<RecommendationAcceptedEvent>
 {
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    //private final Logger log = LoggerFactory.getLogger(getClass());
     
     @Override
     public boolean accepts(Object aEvent)
@@ -72,6 +72,7 @@ public class RecommendationAcceptedEventAdapter
             return JSONUtil.toJsonString(details);
         }
         catch (IOException e) {
+        	final Logger log = LoggerFactory.getLogger(getClass());
             log.error("Unable to log event [{}]", aEvent, e);
             return "<ERROR>";
         }

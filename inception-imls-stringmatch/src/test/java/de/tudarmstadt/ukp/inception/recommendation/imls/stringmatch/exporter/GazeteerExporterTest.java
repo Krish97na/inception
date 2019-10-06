@@ -62,14 +62,14 @@ public class GazeteerExporterTest
     private @Mock RecommendationService recommendationService;
 
     private Project sourceProject;
-    private AnnotationLayer sourceLayer;
-    private AnnotationFeature sourceFeature;
+    //private AnnotationLayer sourceLayer;
+    //private AnnotationFeature sourceFeature;
     private Recommender sourceRecommender;
     
     private Project targetProject;
-    private AnnotationLayer targetLayer;
-    private AnnotationFeature targetFeature;
-    private Recommender targetRecommender;
+    //private AnnotationLayer targetLayer;
+    //private AnnotationFeature targetFeature;
+    //private Recommender targetRecommender;
 
     public @Rule TemporaryFolder temporaryFolder = new TemporaryFolder();
 
@@ -85,9 +85,9 @@ public class GazeteerExporterTest
         sourceProject.setName("Test Project");
         sourceProject.setMode(WebAnnoConst.PROJECT_TYPE_ANNOTATION);
 
-        sourceLayer = new AnnotationLayer("span", "span", SPAN_TYPE, sourceProject, false, TOKENS,
+        AnnotationLayer sourceLayer = new AnnotationLayer("span", "span", SPAN_TYPE, sourceProject, false, TOKENS,
                 NO_OVERLAP);
-        sourceFeature = new AnnotationFeature(sourceProject, sourceLayer, "value", "value",
+        AnnotationFeature sourceFeature = new AnnotationFeature(sourceProject, sourceLayer, "value", "value",
                 CAS.TYPE_NAME_STRING);
         sourceRecommender = new Recommender("rec1", sourceLayer);
         sourceRecommender.setFeature(sourceFeature);
@@ -97,11 +97,11 @@ public class GazeteerExporterTest
         targetProject.setName("Test Project");
         targetProject.setMode(WebAnnoConst.PROJECT_TYPE_ANNOTATION);
 
-        targetLayer = new AnnotationLayer("span", "span", SPAN_TYPE, sourceProject, false, TOKENS,
+        AnnotationLayer targetLayer = new AnnotationLayer("span", "span", SPAN_TYPE, sourceProject, false, TOKENS,
                 NO_OVERLAP);
-        targetFeature = new AnnotationFeature(sourceProject, targetLayer, "value", "value",
+        AnnotationFeature targetFeature = new AnnotationFeature(sourceProject, targetLayer, "value", "value",
                 CAS.TYPE_NAME_STRING);
-        targetRecommender = new Recommender("rec1", targetLayer);
+        Recommender targetRecommender = new Recommender("rec1", targetLayer);
         targetRecommender.setFeature(targetFeature);
         
         when(gazeteerService.listGazeteers(sourceRecommender)).thenReturn(gazeteers());

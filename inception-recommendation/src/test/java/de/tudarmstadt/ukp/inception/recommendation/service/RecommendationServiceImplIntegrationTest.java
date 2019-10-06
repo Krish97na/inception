@@ -86,7 +86,7 @@ public class RecommendationServiceImplIntegrationTest
 
     private Project project;
     private AnnotationLayer layer;
-    private User user;
+    //private User user;
     private Recommender rec;
     private AnnotationFeature feature;
 
@@ -100,7 +100,7 @@ public class RecommendationServiceImplIntegrationTest
         project = createProject(PROJECT_NAME);
         layer = createAnnotationLayer();
         layer.setProject(project);
-        user = createUser();
+        User user = createUser();
         feature = createAnnotationFeature(layer, "value");
 
         rec = buildRecommender(project, feature);

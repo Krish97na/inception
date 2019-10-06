@@ -78,7 +78,7 @@ public class ExternalRecommenderIntegrationTest
     private Recommender recommender;
     private RecommenderContext context;
     private ExternalRecommender sut;
-    private ExternalRecommenderTraits traits;
+    //private ExternalRecommenderTraits traits;
     private RemoteStringMatchingNerRecommender remoteRecommender;
     private MockWebServer server;
     private List<String> requestBodies;
@@ -89,7 +89,7 @@ public class ExternalRecommenderIntegrationTest
         recommender = buildRecommender();
         context = new RecommenderContext();
 
-        traits = new ExternalRecommenderTraits();
+        ExternalRecommenderTraits traits = new ExternalRecommenderTraits();
         sut = new ExternalRecommender(recommender, traits);
 
         remoteRecommender = new RemoteStringMatchingNerRecommender(recommender);

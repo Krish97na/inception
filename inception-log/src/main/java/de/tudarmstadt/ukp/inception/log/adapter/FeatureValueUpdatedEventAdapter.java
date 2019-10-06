@@ -31,7 +31,7 @@ import de.tudarmstadt.ukp.inception.log.model.FeatureChangeDetails;
 public class FeatureValueUpdatedEventAdapter
     implements EventLoggingAdapter<FeatureValueUpdatedEvent>
 {
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    //private final Logger log = LoggerFactory.getLogger(getClass());
     
     @Override
     public boolean accepts(Object aEvent)
@@ -67,6 +67,7 @@ public class FeatureValueUpdatedEventAdapter
             return JSONUtil.toJsonString(details);
         }
         catch (IOException e) {
+        	final Logger log = LoggerFactory.getLogger(getClass());
             log.error("Unable to log event [{}]", aEvent, e);
             return "<ERROR>";
         }

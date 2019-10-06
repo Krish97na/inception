@@ -65,7 +65,7 @@ public class ConceptFeatureIndexingSupportTest
     private KnowledgeBase kb;
     private @Mock AnnotationSchemaService annotationSchemaService;
     private @Mock KnowledgeBaseService kbService;
-    private FeatureSupportRegistryImpl featureSupportRegistry;
+    //private FeatureSupportRegistryImpl featureSupportRegistry;
     private FeatureIndexingSupportRegistryImpl featureIndexingSupportRegistry;
     private JCas jcas;
     
@@ -81,7 +81,7 @@ public class ConceptFeatureIndexingSupportTest
 
         kb = new KnowledgeBase();
 
-        featureSupportRegistry = new FeatureSupportRegistryImpl(asList(
+        FeatureSupportRegistryImpl featureSupportRegistry = new FeatureSupportRegistryImpl(asList(
                 new PrimitiveUimaFeatureSupport(),
                 new ConceptFeatureSupport(kbService)));
         featureSupportRegistry.init();

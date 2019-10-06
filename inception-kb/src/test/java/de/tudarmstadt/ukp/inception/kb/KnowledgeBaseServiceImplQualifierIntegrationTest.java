@@ -75,14 +75,14 @@ public class KnowledgeBaseServiceImplQualifierIntegrationTest {
     public final SpringMethodRule springMethodRule = new SpringMethodRule();
 
     private KnowledgeBaseServiceImpl sut;
-    private Project project;
+    //private Project project;
     private KnowledgeBase kb;
     private TestFixtures testFixtures;
 
-    private KBConcept concept;
+    //private KBConcept concept;
     private KBProperty property;
     private KBHandle conceptHandle;
-    private KBHandle propertyHandle;
+    //private KBHandle propertyHandle;
     private KBStatement statement;
 
     @BeforeClass
@@ -99,16 +99,16 @@ public class KnowledgeBaseServiceImplQualifierIntegrationTest {
         EntityManager entityManager = testEntityManager.getEntityManager();
         testFixtures = new TestFixtures(testEntityManager);
         sut = new KnowledgeBaseServiceImpl(repoProps, entityManager);
-        project = testFixtures.createProject(PROJECT_NAME);
+        Project project = testFixtures.createProject(PROJECT_NAME);
         kb = testFixtures.buildKnowledgeBase(project, KB_NAME, Reification.WIKIDATA);
         sut.registerKnowledgeBase(kb, sut.getNativeConfig());
         
-        concept = testFixtures.buildConcept();
+        KBConcept concept = testFixtures.buildConcept();
         property = testFixtures.buildProperty();
         sut.createConcept(kb, concept);
         sut.createProperty(kb, property);
         conceptHandle = concept.toKBHandle();
-        propertyHandle = property.toKBHandle();
+        KBHandle propertyHandle = property.toKBHandle();
         statement = testFixtures.buildStatement(conceptHandle, property, "Test statement");
         sut.upsertStatement(kb, statement);
     }

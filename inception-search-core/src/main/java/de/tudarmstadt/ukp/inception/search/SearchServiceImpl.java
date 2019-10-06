@@ -76,7 +76,7 @@ public class SearchServiceImpl
     private @Autowired RepositoryProperties repositoryProperties;
 
     // Index factory
-    private PhysicalIndexFactory physicalIndexFactory;
+    //private PhysicalIndexFactory physicalIndexFactory;
     private String physicalIndexFactoryName = "mtasDocumentIndexFactory";
 
     // The indexes for each project
@@ -117,7 +117,7 @@ public class SearchServiceImpl
             }
             
             // Get physical index object
-            physicalIndexFactory = physicalIndexRegistry.getIndexFactory(physicalIndexFactoryName);
+            PhysicalIndexFactory physicalIndexFactory = physicalIndexRegistry.getIndexFactory(physicalIndexFactoryName);
 
             PhysicalIndex physicalIndex = physicalIndexFactory.getNewIndex(aProject,
                     annotationSchemaService, documentService, projectService,

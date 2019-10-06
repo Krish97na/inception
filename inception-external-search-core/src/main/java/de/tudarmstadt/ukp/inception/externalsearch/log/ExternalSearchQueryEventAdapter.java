@@ -32,7 +32,7 @@ public class ExternalSearchQueryEventAdapter
     implements EventLoggingAdapter<ExternalSearchQueryEvent>
 {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    //private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
     public boolean accepts(Object aEvent)
@@ -69,6 +69,7 @@ public class ExternalSearchQueryEventAdapter
             return JSONUtil.toJsonString(details);
         }
         catch (IOException e) {
+        	final Logger log = LoggerFactory.getLogger(getClass());
             log.error("Unable to log event [{}]", aEvent, e);
             return "<ERROR>";
         }

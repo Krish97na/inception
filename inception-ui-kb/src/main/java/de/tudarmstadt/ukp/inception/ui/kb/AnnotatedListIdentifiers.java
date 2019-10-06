@@ -65,7 +65,7 @@ public class AnnotatedListIdentifiers
     private IModel<KnowledgeBase> kbModel;
     private IModel<KBObject> conceptModel;
 
-    private Project currentProject;
+    //private Project currentProject;
     private User currentUser;
 
     private Model<String> targetQuery = Model.of("");
@@ -149,7 +149,7 @@ public class AnnotatedListIdentifiers
             return Collections.emptyList();
         }
         try {
-            currentProject = kbModel.getObject().getProject();
+        	Project currentProject = kbModel.getObject().getProject();
             return searchService
                 .query(currentUser, currentProject, targetQuery.getObject());
         }

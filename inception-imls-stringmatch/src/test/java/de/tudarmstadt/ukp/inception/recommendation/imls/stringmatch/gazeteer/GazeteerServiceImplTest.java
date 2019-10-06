@@ -78,9 +78,9 @@ public class GazeteerServiceImplTest
 
     private GazeteerServiceImpl sut;
 
-    private Project project;
-    private AnnotationLayer spanLayer;
-    private AnnotationFeature spanFeat1;
+    //private Project project;
+    //private AnnotationLayer spanLayer;
+    //private AnnotationFeature spanFeat1;
     private Recommender rec1;
     
     @Before
@@ -93,16 +93,16 @@ public class GazeteerServiceImplTest
         
         sut = new GazeteerServiceImpl(repoProps, em);
         
-        project = new Project();
+        Project project = new Project();
         project.setName("test");
         project.setMode(PROJECT_TYPE_ANNOTATION);
         em.persist(project);
         
-        spanLayer = new AnnotationLayer("span", "span", SPAN_TYPE, project, false, TOKENS,
+        AnnotationLayer spanLayer = new AnnotationLayer("span", "span", SPAN_TYPE, project, false, TOKENS,
                 NO_OVERLAP);
         em.persist(spanLayer);
 
-        spanFeat1 = new AnnotationFeature(project, spanLayer, "feat1", "feat1", TYPE_NAME_STRING);
+        AnnotationFeature spanFeat1 = new AnnotationFeature(project, spanLayer, "feat1", "feat1", TYPE_NAME_STRING);
         em.persist(spanFeat1);
         
         rec1 = new Recommender("rec1", spanLayer);
